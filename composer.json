@@ -1,0 +1,14 @@
+{
+    "require": {
+        "slim/slim": "^3.0",
+        "symfony/yaml": "^3.3"
+    },
+    "autoload": {
+      "psr-4": {
+        "Services\\Target\\Controller\\": "src/controllers"
+      }
+    },
+    "classmap": [
+      "src/controllers"
+    ]
+}

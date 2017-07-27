@@ -1,0 +1,2 @@
+'/target/hello/{name}': 'Services\Target\Controller\HelloController:hello'
+'/target/goodbye/{name}': 'Services\Target\Controller\HelloController:goodbye'
