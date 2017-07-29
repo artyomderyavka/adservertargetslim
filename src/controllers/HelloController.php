@@ -10,9 +10,11 @@ namespace Services\Target\Controller;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use \AdServer\Controller as Controller;
 
 
-class HelloController {
+class HelloController extends Controller
+{
     /**
      * @param Request $request
      * @param Response $response
@@ -27,8 +29,10 @@ class HelloController {
 
     public function goodbye(Request $request, Response $response, $arguments) {
         $name = $request->getAttribute('name');
-        $response->getBody()->write("Goodbye from TARGET, $name");
+        $data = new \StdClass();
+        $data->message = "Goodbye from TARGET, $name";
 
-        return $response;
-    }
+
+        return $response->withJson($data);
+   }
 }

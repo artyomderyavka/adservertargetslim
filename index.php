@@ -13,21 +13,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require './vendor/autoload.php';
 
-$serviceTargetRoutes = Yaml::parse(file_get_contents('./src/config/routes.yml'));
-
-$routes = array_merge($serviceTargetRoutes);
+$routes = Yaml::parse(file_get_contents('./services/adservertargetslim/src/config/routes.yml'));
 
 $configuration = [
     'settings' => [
         'displayErrorDetails' => true,
     ],
 ];
-$c = new \Slim\Container($configuration);
-$app = new \Slim\App($c);
 
-
-foreach ($routes as $route => $callableControllerAction) {
-    $app->map(['GET', 'POST'], $route, $callableControllerAction);
-}
-
-$app->run();
+$container = new \Slim\Container($configuration);
+$container['contentServiceClient'] = function ($container) {
+    return new \AdServer\LocalClient();
+};
+\AdServer\Engine::run($container, $routes);
