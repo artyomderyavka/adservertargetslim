@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require './vendor/autoload.php';
 
-$routes = Yaml::parse(file_get_contents('./services/adservertargetslim/src/config/routes.yml'));
+$routes = Yaml::parse(file_get_contents('./src/config/routes.yml'));
 
 $configuration = [
     'settings' => [
